@@ -6,3 +6,8 @@
   margin-top: 5px;
   opacity: 0.5;
 }
+.rate{
+  position: absolute;
+  bottom:17px;
+  right: 10px;
+}
