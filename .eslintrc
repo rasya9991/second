@@ -15,16 +15,16 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": "latest",
+    "ecmaVersion": 2022,
     "sourceType": "module"
   },
   "plugins": ["react", "prettier", "import"],
   "rules": {
-    "indent": ["error", 2],
+    "indent": ["error", 2,{"SwitchCase": 1}],
     "prettier/prettier": "error",
     "linebreak-style": [0, "unix"],
     "quotes": ["error", "single"],
-    "semi": ["error", "never"],
+    //    "semi": ["error", "never"],
     "react/react-in-jsx-scope": "off",
     "react/prop-types": 0,
     "import/no-unresolved": [2, { "caseSensitive": false }],

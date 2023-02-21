@@ -1,14 +1,21 @@
-import { Card, Tag, Rate } from 'antd'
-import './Movie.css'
-import { format } from 'date-fns'
+import { Card, Tag, Rate } from 'antd';
+import './Movie.css';
+import { format } from 'date-fns';
+import { useContext } from 'react';
+
+import { GlobalContext } from '../Context/GlobalContext';
+
 const Movie = (props) => {
-  const POSTERSLINK = 'https://image.tmdb.org/t/p/original'
-  const { description, title, poster, genres, releaseDate } = props
-  const text = description.length > 0 ? description.split(' ').slice(0, 40).join(' ') + '...' : 'no description'
+  const { rateMovie, rated } = useContext(GlobalContext);
+  const POSTERSLINK = 'https://image.tmdb.org/t/p/original';
+  const { description, title, poster, genres, releaseDate, movie } = props;
+  const text = description.length > 0 ? description.split(' ').slice(0, 40).join(' ') + '...' : 'no description';
+  const ratedMovie = rated.find((o) => o.id === movie.id);
+  const disabledMovie = ratedMovie ? true : false;
   const movieGenre = genres.map((el) => {
-    return <Tag key={el}>{el}</Tag>
-  })
-  const finalDate = releaseDate.length > 0 ? format(new Date(releaseDate), 'MMMM dd, yyyy') : 'no date'
+    return <Tag key={el}>{el}</Tag>;
+  });
+  const finalDate = releaseDate.length > 0 ? format(new Date(releaseDate), 'MMMM dd, yyyy') : 'no date';
   return (
     <Card
       hoverable
@@ -26,8 +33,14 @@ const Movie = (props) => {
       }
     >
       <h4 className={'title'}>{title === undefined || null ? 'title' : title}</h4>
-      <div className="rate" onClick={() => console.log('hello')}>
-        <Rate></Rate>
+      <div className="rate">
+        <Rate
+          onChange={(value) => {
+            movie.rating = value;
+            rateMovie(movie);
+          }}
+          value={disabledMovie ? rated.find((o) => o.id === movie.id).rating : 0}
+        ></Rate>
       </div>
       <span className={'movie-date'}>{finalDate === undefined || null ? ' final date' : finalDate}</span>
       <div className={'tags'}>{movieGenre}</div>
@@ -35,6 +48,6 @@ const Movie = (props) => {
         <span>{text}</span>
       </div>
     </Card>
-  )
-}
-export default Movie
+  );
+};
+export default Movie;
