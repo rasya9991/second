@@ -1,1 +1,13 @@
-html {  box-sizing: border-box;}*,*::after,*::before {  box-sizing: inherit;}body {  background-color: #eaeaea;}
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #eaeaea;
+}
