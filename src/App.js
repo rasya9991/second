@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Input } from 'antd';
+import { Input, Pagination } from 'antd';
 import debounce from 'lodash.debounce';
 
 import './style.css';
@@ -14,31 +14,33 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [movies, setMovies] = useState([]);
   const [genre, setGenre] = useState([]);
-  // const [query, setQuery] = useState('')
+  const [query, setQuery] = useState('');
+  const [totalPages, setTotalPages] = useState(5);
   const getMovies = async (url) => {
-    const { results: movies } = await axios.get(url).then((response) => response.data);
+    const { results: movies, total_pages: pages } = await axios.get(url).then((response) => response.data);
 
     const { genres } = await axios
       .get('https://api.themoviedb.org/3/genre/movie/list?api_key=98afe23e546cecc06bd27931bbacb27e')
       .then((response) => response.data);
     setIsLoading(false);
+    setTotalPages(pages);
     setMovies([...movies]);
     setGenre([...genres]);
-    console.log(movies);
     return movies;
   };
   const onChange = (e) => {
     e.preventDefault();
 
-    // setQuery(e.target.value)
+    setQuery(e.target.value);
 
     getMovies(
       `https://api.themoviedb.org/3/search/movie?api_key=98afe23e546cecc06bd27931bbacb27e&language=en-US&query=${e.target.value}&page=1`
     );
   };
 
-  useEffect(() => {
-    getMovies(MOVIESURL);
+  useEffect(async () => {
+    await getMovies(MOVIESURL);
+    setTotalPages(1);
   }, []);
 
   const getGenres = (el) => {
@@ -84,6 +86,19 @@ function App() {
             <MovieList>{renderMovies()}</MovieList>
           </div>
         )}
+        <Pagination
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+          defaultCurrent={1}
+          total={totalPages * 10}
+          onChange={(page) => {
+            getMovies(
+              `https://api.themoviedb.org/3/search/movie?api_key=98afe23e546cecc06bd27931bbacb27e&language=en-US&query=${query}&page=${page}`
+            );
+          }}
+        />
       </div>
     </GlobalProvider>
   );
