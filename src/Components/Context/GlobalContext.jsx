@@ -14,9 +14,6 @@ export const GlobalProvider = (props) => {
   useEffect(() => {
     localStorage.setItem('rated', JSON.stringify(state.rated));
   }, [state.rated]);
-  // const AddMovieToRated = (movie,rating) => {
-  //   dispatch({ type: 'RATE_MOVIE', payload: movie });
-  // };
 
   const rateMovie = (movie) => {
     dispatch({ type: 'RATE_MOVIE', payload: movie });

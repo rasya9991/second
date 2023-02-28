@@ -10,12 +10,12 @@ const Hello = (key) => {
 };
 const items = [
   {
-    key: '1',
+    key: 'Search',
     label: 'Search movies',
     children: <PageSearch />,
   },
   {
-    key: '2',
+    key: 'Rated',
     label: 'Rated movies',
     children: <PageRated />,
   },

@@ -12,9 +12,15 @@ const Movie = (props) => {
   const text = description.length > 0 ? description.split(' ').slice(0, 40).join(' ') + '...' : 'no description';
   const ratedMovie = rated.find((o) => o.id === movie.id);
   const disabledMovie = ratedMovie ? true : false;
-  const movieGenre = genres.map((el) => {
-    return <Tag key={el}>{el}</Tag>;
-  });
+  let movieGenre;
+  if (genres) {
+    movieGenre = genres.map((el) => {
+      return <Tag key={el}>{el}</Tag>;
+    });
+  } else {
+    ('no genre');
+  }
+
   const finalDate = releaseDate.length > 0 ? format(new Date(releaseDate), 'MMMM dd, yyyy') : 'no date';
   return (
     <Card
@@ -35,7 +41,7 @@ const Movie = (props) => {
       <h4 className={'title'}>{title === undefined || null ? 'title' : title}</h4>
       <div className="rate">
         <Rate
-					count={10}
+          count={10}
           onChange={(value) => {
             movie.rating = value;
             rateMovie(movie);

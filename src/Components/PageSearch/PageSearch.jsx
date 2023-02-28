@@ -36,9 +36,11 @@ const PageSearch = () => {
     );
   };
 
-  useEffect(async () => {
-    await getMovies(MOVIESURL);
-    setTotalPages(1);
+  useEffect(() => {
+    (async function fetch() {
+      await getMovies(MOVIESURL);
+      setTotalPages(1);
+    })();
   }, []);
 
   const getGenres = (el) => {
