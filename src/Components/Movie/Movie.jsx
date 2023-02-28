@@ -35,6 +35,7 @@ const Movie = (props) => {
       <h4 className={'title'}>{title === undefined || null ? 'title' : title}</h4>
       <div className="rate">
         <Rate
+					count={10}
           onChange={(value) => {
             movie.rating = value;
             rateMovie(movie);
