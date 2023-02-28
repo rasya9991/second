@@ -5,9 +5,7 @@ import { Tabs } from 'antd';
 import { GlobalProvider } from './Components/Context/GlobalContext';
 import PageSearch from './Components/PageSearch/PageSearch';
 import PageRated from './Components/PageRated/PageRated';
-const Hello = (key) => {
-  console.log(key);
-};
+
 const items = [
   {
     key: 'Search',
@@ -23,7 +21,7 @@ const items = [
 function App() {
   return (
     <GlobalProvider>
-      <Tabs defaultActiveKey="1" items={items} onChange={Hello} style={{ alignItems: 'center' }} />
+      <Tabs defaultActiveKey="1" items={items} style={{ alignItems: 'center' }} />
     </GlobalProvider>
   );
 }
