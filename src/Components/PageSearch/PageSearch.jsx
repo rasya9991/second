@@ -20,7 +20,7 @@ const PageSearch = () => {
 
     const { genres } = await axios
       .get('https://api.themoviedb.org/3/genre/movie/list?api_key=98afe23e546cecc06bd27931bbacb27e')
-      .then((response) => response.data);
+      .then((response) => response.data)
     setIsLoading(false);
     setTotalPages(pages);
     setMovies([...movies]);
