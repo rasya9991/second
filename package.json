@@ -66,10 +66,9 @@
     }
   },
   "lint-staged": {
-    ".{js,jsx,ts,tsx}": [
-      "npm run lint:fix",
-      "prettier --write ."
-    ]
+    ".ts": "npx tsc --noEmit",
+    ".{js,jsx,ts,tsx}": "npm run lint:fix",
+    "*.{js,jsx,ts,tsx,html,css}": "npx prettier --check"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js"
