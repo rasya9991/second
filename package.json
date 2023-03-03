@@ -67,7 +67,8 @@
   "lint-staged": {
     "src/*.{js,jsx}": [
       "npm run lint:fix",
-      "prettier --write ."
+      "prettier --write .",
+      "git add"
     ]
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
