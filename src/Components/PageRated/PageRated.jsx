@@ -17,7 +17,7 @@ const PageRated = () => {
   };
   useEffect(() => {
     nextPage(pageNow);
-  }, [rated, pageNow]);
+  }, [rated, pageNow])
   return (
     <div>
       <MovieList>
