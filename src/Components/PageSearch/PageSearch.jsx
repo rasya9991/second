@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Input, Pagination } from 'antd';
 import axios from 'axios';
 import debounce from 'lodash.debounce';
@@ -6,12 +6,13 @@ import debounce from 'lodash.debounce';
 import Load from '../Load/Load';
 import MovieList from '../MovieList/MovieList';
 import Movie from '../Movie/Movie';
+import { GlobalContext } from '../Context/GlobalContext';
 
 const MOVIESURL = 'https://api.themoviedb.org/3/movie/top_rated?api_key=98afe23e546cecc06bd27931bbacb27e';
 const PageSearch = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [movies, setMovies] = useState([]);
-  const [genre, setGenre] = useState([]);
+  const { setGenre, getGenres } = useContext(GlobalContext);
   const [query, setQuery] = useState('');
   const [totalPages, setTotalPages] = useState(5);
   const getMovies = async (url) => {
@@ -42,18 +43,6 @@ const PageSearch = () => {
       setTotalPages(1);
     })();
   }, []);
-
-  const getGenres = (el) => {
-    let result = [];
-    for (let value of genre) {
-      for (let element of el.genre_ids) {
-        if (value.id === element) {
-          result.push(value.name);
-        }
-      }
-    }
-    return result;
-  };
   const renderMovies = () => {
     if (movies.length === 0) {
       return <span>Movies not found!</span>;
@@ -62,6 +51,7 @@ const PageSearch = () => {
       const genres = getGenres(el);
       return (
         <Movie
+          voteAverage={el.vote_average}
           key={el.id}
           description={el.overview}
           title={el.original_title}

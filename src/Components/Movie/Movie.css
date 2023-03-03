@@ -1,5 +1,5 @@
 .title {
-  white-space: unset;
+  /*white-space: unset;*/
   margin: 0;
 }
 .movie-date {
@@ -11,3 +11,14 @@
   bottom: 17px;
   right: 10px;
 }
+.rating{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    margin-left: auto;
+    flex-shrink: 0;
+    display: grid;
+    place-content: center;
+}
+

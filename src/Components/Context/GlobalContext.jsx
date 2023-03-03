@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useReducer } from 'react';
+import React, { createContext, useEffect, useReducer, useState } from 'react';
 
 import FuncReducer from './FuncReducer';
 
@@ -10,6 +10,19 @@ export const GlobalContext = createContext(initialState);
 
 export const GlobalProvider = (props) => {
   const [state, dispatch] = useReducer(FuncReducer, initialState);
+  const [genre, setGenre] = useState([]);
+
+  const getGenres = (el) => {
+    let result = [];
+    for (let value of genre) {
+      for (let element of el.genre_ids) {
+        if (value.id === element) {
+          result.push(value.name);
+        }
+      }
+    }
+    return result;
+  };
 
   useEffect(() => {
     localStorage.setItem('rated', JSON.stringify(state.rated));
@@ -19,5 +32,9 @@ export const GlobalProvider = (props) => {
     dispatch({ type: 'RATE_MOVIE', payload: movie });
   };
 
-  return <GlobalContext.Provider value={{ rated: state.rated, rateMovie }}>{props.children}</GlobalContext.Provider>;
+  return (
+    <GlobalContext.Provider value={{ rated: state.rated, rateMovie, genre, setGenre, getGenres }}>
+      {props.children}
+    </GlobalContext.Provider>
+  );
 };

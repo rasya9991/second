@@ -8,7 +8,7 @@ import { GlobalContext } from '../Context/GlobalContext';
 const Movie = (props) => {
   const { rateMovie, rated } = useContext(GlobalContext);
   const POSTERSLINK = 'https://image.tmdb.org/t/p/original';
-  const { description, title, poster, genres, releaseDate, movie } = props;
+  const { description, title, poster, genres, releaseDate, movie, voteAverage } = props;
   const text = description.length > 0 ? description.split(' ').slice(0, 40).join(' ') + '...' : 'no description';
   const ratedMovie = rated.find((o) => o.id === movie.id);
   const disabledMovie = ratedMovie ? true : false;
@@ -19,6 +19,17 @@ const Movie = (props) => {
     });
   } else {
     ('no genre');
+  }
+  let cyrcleColor;
+
+  if (voteAverage >= 7) {
+    cyrcleColor = '#66E900';
+  } else if (voteAverage >= 5) {
+    cyrcleColor = '#E97E00';
+  } else if (voteAverage >= 3) {
+    cyrcleColor = '#E9D100';
+  } else if (voteAverage >= 0) {
+    cyrcleColor = '#66E900';
   }
 
   const finalDate = releaseDate.length > 0 ? format(new Date(releaseDate), 'MMMM dd, yyyy') : 'no date';
@@ -38,7 +49,13 @@ const Movie = (props) => {
         />
       }
     >
-      <h4 className={'title'}>{title === undefined || null ? 'title' : title}</h4>
+      <div style={{ display: 'flex' }}>
+        <h4 className={'title'}>{title === undefined || null ? 'title' : title}</h4>
+        <div className="rating" style={{ boxShadow: `0 0 0 5px ${cyrcleColor}` }}>
+          {voteAverage ? voteAverage : 0}
+        </div>
+      </div>
+
       <div className="rate">
         <Rate
           count={10}
