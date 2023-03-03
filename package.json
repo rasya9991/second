@@ -23,7 +23,8 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint": "eslint -c .eslintrc --ext .js,.jsx .",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier ./src --write"
   },
   "eslintConfig": {
     "extends": [
@@ -67,7 +68,7 @@
   "lint-staged": {
     "src/*.{js,jsx}": [
       "npm run lint:fix",
-      "prettier --write .",
+      "npm run format",
       "git add"
     ]
   },
