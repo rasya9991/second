@@ -66,10 +66,9 @@
     }
   },
   "lint-staged": {
-    "src/*.{js,jsx}": [
-      "npm run lint:fix",
-      "npm run format"
-    ]
+    ".ts": "npx tsc --noEmit",
+    ".{js,jsx,ts,tsx}": "npx eslint",
+    "*.{js,jsx,ts,tsx,html,css}": "npx prettier --check"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js"
