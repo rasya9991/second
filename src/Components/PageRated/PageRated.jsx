@@ -9,7 +9,7 @@ const PageRated = () => {
   const { rated } = useContext(GlobalContext);
   const [pageNow, setPageNow] = useState(1);
   const [renderPage, setPage] = useState(rated.slice(0, 20));
-  const { getGenres } = useContext(GlobalContext);
+  const { genre, getGenres } = useContext(GlobalContext);
   const nextPage = (value) => {
     const end = value * 2 * 10;
     const pages = rated.slice(end - 20, end);
