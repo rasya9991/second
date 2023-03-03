@@ -61,7 +61,7 @@ const Movie = (props) => {
           count={10}
           onChange={(value) => {
             movie.rating = value;
-            rateMovie(movie);
+            rateMovie(movie)
           }}
           value={disabledMovie ? rated.find((o) => o.id === movie.id).rating : 0}
         ></Rate>
