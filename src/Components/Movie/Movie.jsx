@@ -29,7 +29,7 @@ const Movie = (props) => {
   } else if (voteAverage >= 3) {
     cyrcleColor = '#E9D100';
   } else if (voteAverage >= 0) {
-    cyrcleColor = '#66E900'
+    cyrcleColor = '#66E900';
   }
 
   const finalDate = releaseDate.length > 0 ? format(new Date(releaseDate), 'MMMM dd, yyyy') : 'no date';
