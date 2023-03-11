@@ -1,0 +1,1 @@
+import axios from 'axios';export const getGenresApi = () => {  return axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=98afe23e546cecc06bd27931bbacb27e');};export const getMoviesApi = (url) => {  return axios.get(url);};
