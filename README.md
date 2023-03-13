@@ -1,1 +1,1 @@
-https://second-6ai7trh25-rasya9991.vercel.app/
+https://second-cgs2hn8tj-rasya9991.vercel.app/
