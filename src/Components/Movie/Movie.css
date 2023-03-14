@@ -1,24 +1,1 @@
-.title {
-  /*white-space: unset;*/
-  margin: 0;
-}
-.movie-date {
-  margin-top: 5px;
-  opacity: 0.5;
-}
-.rate {
-  position: absolute;
-  bottom: 17px;
-  right: 10px;
-}
-.rating {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: transparent;
-  margin-left: auto;
-  flex-shrink: 0;
-  display: grid;
-  place-content: center;
-  padding: 5px;
-}
+.title {  /*white-space: unset;*/  margin: 0;}.movie-date {  margin-top: 5px;  opacity: 0.5;}.rate {  position: absolute;  bottom: 17px;  right: 10px;}.rating {  width: 40px;  height: 40px;  border-radius: 50%;  background-color: transparent;  margin-left: auto;  flex-shrink: 0;  display: grid;  place-content: center;  padding: 5px;}.content-box {  display: flex;}
